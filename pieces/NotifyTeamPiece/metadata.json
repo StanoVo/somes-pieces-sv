@@ -1,14 +1,24 @@
 {
-    "outputs":  {
-                    "notification_sent":  "bool",
-                    "message":  "str",
-                    "recipients":  "str"
-                },
-    "dependencies_group":  "0",
-    "description":  "Send notifications",
-    "name":  "NotifyTeamPiece",
-    "inputs":  {
-                   "webhook_url":  "str",
-                   "metrics_path":  "str"
-               }
+    "name": "NotifyTeamPiece",
+    "description": "Send notifications",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "container_resources": {
+        "requests": {
+            "cpu": 100,
+            "memory": 128
+        },
+        "limits": {
+            "cpu": 500,
+            "memory": 512
+        }
+    },
+    "tags": [
+        "Notify Team Piece"
+    ],
+    "style": {
+        "node_label": "Notify Team Piece",
+        "icon_class_name": "fa-solid:database"
+    }
 }

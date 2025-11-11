@@ -1,16 +1,24 @@
 {
-    "outputs":  {
-                    "message":  "str",
-                    "forecast_file":  "str",
-                    "plot_file":  "str"
-                },
-    "dependencies_group":  "0",
-    "description":  "Generates next-day solar forecast",
-    "name":  "RunSolarForecastPiece",
-    "inputs":  {
-                   "features_csv":  "str",
-                   "model_path":  "str",
-                   "output_csv":  "str",
-                   "output_plot":  "str"
-               }
+    "name": "RunSolarForecastPiece",
+    "description": "Generates next-day solar forecast",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "container_resources": {
+        "requests": {
+            "cpu": 100,
+            "memory": 128
+        },
+        "limits": {
+            "cpu": 500,
+            "memory": 512
+        }
+    },
+    "tags": [
+        "Run Solar Forecast Piece"
+    ],
+    "style": {
+        "node_label": "Run Solar Forecast Piece",
+        "icon_class_name": "fa-solid:database"
+    }
 }

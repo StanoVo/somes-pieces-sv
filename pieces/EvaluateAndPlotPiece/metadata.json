@@ -1,18 +1,24 @@
 {
-    "outputs":  {
-                    "r2":  "float",
-                    "message":  "str",
-                    "mae":  "float",
-                    "metrics_file":  "str",
-                    "plot_file":  "str"
-                },
-    "dependencies_group":  "0",
-    "description":  "Evaluates model and generates plots",
-    "name":  "EvaluateAndPlotPiece",
-    "inputs":  {
-                   "data_path":  "str",
-                   "metrics_out":  "str",
-                   "plot_out":  "str",
-                   "model_path":  "str"
-               }
+    "name": "EvaluateAndPlotPiece",
+    "description": "Evaluates model and generates plots",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "container_resources": {
+        "requests": {
+            "cpu": 100,
+            "memory": 128
+        },
+        "limits": {
+            "cpu": 500,
+            "memory": 512
+        }
+    },
+    "tags": [
+        "Evaluate And Plot Piece"
+    ],
+    "style": {
+        "node_label": "Evaluate And Plot Piece",
+        "icon_class_name": "fa-solid:database"
+    }
 }

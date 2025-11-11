@@ -1,16 +1,24 @@
 {
-    "outputs":  {
-                    "message":  "str",
-                    "model_version_id":  "str",
-                    "registry_url":  "str"
-                },
-    "dependencies_group":  "0",
-    "description":  "Register model in Domino",
-    "name":  "RegisterModelPiece",
-    "inputs":  {
-                   "metrics_path":  "str",
-                   "name":  "str",
-                   "description":  "str",
-                   "model_path":  "str"
-               }
+    "name": "RegisterModelPiece",
+    "description": "Register model in Domino",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "container_resources": {
+        "requests": {
+            "cpu": 100,
+            "memory": 128
+        },
+        "limits": {
+            "cpu": 500,
+            "memory": 512
+        }
+    },
+    "tags": [
+        "Register Model Piece"
+    ],
+    "style": {
+        "node_label": "Register Model Piece",
+        "icon_class_name": "fa-solid:database"
+    }
 }

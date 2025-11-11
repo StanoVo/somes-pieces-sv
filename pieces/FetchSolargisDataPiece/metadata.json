@@ -1,17 +1,21 @@
 {
-    "outputs":  {
-                    "downloaded_file":  "str",
-                    "message":  "str"
-                },
-    "dependencies_group":  "0",
-    "description":  "Downloads Solargis data",
-    "name":  "FetchSolargisDataPiece",
-    "inputs":  {
-                   "s3_path":  "str",
-                   "output_path":  "str"
-               },
+    "name": "FetchSolargisDataPiece",
+    "description": "Downloads Solargis data",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "container_resources": {
+        "requests": {
+            "cpu": 100,
+            "memory": 128
+        },
+        "limits": {
+            "cpu": 500,
+            "memory": 512
+        }
+    },
     "tags": [
-        "FetchSolargisDataPiece"
+        "Fetch Solargis Data Piece"
     ],
     "style": {
         "node_label": "Fetch Solargis Data Piece",
