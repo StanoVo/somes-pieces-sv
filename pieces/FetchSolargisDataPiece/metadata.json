@@ -1,9 +1,7 @@
 {
     "name": "FetchSolargisDataPiece",
     "description": "Downloads Solargis data",
-    "dependency": {
-        "requirements_file": "requirements_0.txt"
-    },
+    "dependencies_group":  "0",
     "container_resources": {
         "requests": {
             "cpu": 100,
@@ -15,7 +13,7 @@
         }
     },
     "tags": [
-        "Fetch Solargis Data Piece"
+        "Solargis"
     ],
     "style": {
         "node_label": "Fetch Solargis Data Piece",

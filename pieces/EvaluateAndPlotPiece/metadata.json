@@ -1,9 +1,7 @@
 {
     "name": "EvaluateAndPlotPiece",
     "description": "Evaluates model and generates plots",
-    "dependency": {
-        "requirements_file": "requirements_0.txt"
-    },
+    "dependencies_group":  "0",
     "container_resources": {
         "requests": {
             "cpu": 100,
@@ -15,7 +13,7 @@
         }
     },
     "tags": [
-        "Evaluate And Plot Piece"
+        "Solargis"
     ],
     "style": {
         "node_label": "Evaluate And Plot Piece",

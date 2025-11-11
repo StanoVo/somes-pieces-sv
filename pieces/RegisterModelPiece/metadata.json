@@ -1,9 +1,7 @@
 {
     "name": "RegisterModelPiece",
     "description": "Register model in Domino",
-    "dependency": {
-        "requirements_file": "requirements_0.txt"
-    },
+    "dependencies_group":  "0",
     "container_resources": {
         "requests": {
             "cpu": 100,
@@ -15,7 +13,7 @@
         }
     },
     "tags": [
-        "Register Model Piece"
+        "Register model piece"
     ],
     "style": {
         "node_label": "Register Model Piece",
