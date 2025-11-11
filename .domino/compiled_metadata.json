@@ -1,4 +1,78 @@
 {
+    "PreprocessSolargisPiece": {
+        "name": "PreprocessSolargisPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": null
+        },
+        "tags": [],
+        "style": {
+            "node_label": "Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-solid fa-circle",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "outputs": {
+            "message": "str",
+            "output_file": "str",
+            "processed_rows": "int"
+        },
+        "dependencies_group": "0",
+        "description": "Preprocess Solargis data",
+        "inputs": {
+            "output_path": "str",
+            "input_path": "str"
+        },
+        "input_schema": {
+            "properties": {
+                "input_path": {
+                    "title": "Input Path",
+                    "type": "string"
+                },
+                "output_path": {
+                    "title": "Output Path",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "input_path",
+                "output_path"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "type": "string"
+                },
+                "processed_rows": {
+                    "title": "Processed Rows",
+                    "type": "integer"
+                },
+                "output_file": {
+                    "title": "Output File",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "message",
+                "processed_rows",
+                "output_file"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/StanoVo/somes-pieces-sv/tree/main/pieces/PreprocessSolargisPiece"
+    },
     "EvaluateAndPlotPiece": {
         "name": "EvaluateAndPlotPiece",
         "dependency": {
@@ -95,10 +169,10 @@
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/scdi274/somes-pieces/tree/main/pieces/EvaluateAndPlotPiece"
+        "source_url": "https://github.com/StanoVo/somes-pieces-sv/tree/main/pieces/EvaluateAndPlotPiece"
     },
-    "FetchSolargisDataPiece": {
-        "name": "FetchSolargisDataPiece",
+    "TrainXGBoostPiece": {
+        "name": "TrainXGBoostPiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": null
@@ -117,105 +191,36 @@
             }
         },
         "outputs": {
-            "downloaded_file": "str",
-            "message": "str"
-        },
-        "dependencies_group": "0",
-        "description": "Downloads Solargis data",
-        "inputs": {
-            "s3_path": "str",
-            "output_path": "str"
-        },
-        "input_schema": {
-            "properties": {
-                "s3_path": {
-                    "title": "S3 Path",
-                    "type": "string"
-                },
-                "output_path": {
-                    "title": "Output Path",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "s3_path",
-                "output_path"
-            ],
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "properties": {
-                "message": {
-                    "title": "Message",
-                    "type": "string"
-                },
-                "downloaded_file": {
-                    "title": "Downloaded File",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "message",
-                "downloaded_file"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/scdi274/somes-pieces/tree/main/pieces/FetchSolargisDataPiece"
-    },
-    "NotifyTeamPiece": {
-        "name": "NotifyTeamPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": null
-        },
-        "tags": [],
-        "style": {
-            "node_label": "Piece",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "fa-solid fa-circle",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "outputs": {
-            "notification_sent": "bool",
+            "model_file": "str",
             "message": "str",
-            "recipients": "str"
+            "training_log": "str"
         },
         "dependencies_group": "0",
-        "description": "Send notifications",
+        "description": "Train XGBoost model",
         "inputs": {
-            "webhook_url": "str",
-            "metrics_path": "str"
+            "data_path": "str",
+            "model_out": "str",
+            "log_out": "str"
         },
         "input_schema": {
             "properties": {
-                "metrics_path": {
-                    "title": "Metrics Path",
+                "data_path": {
+                    "title": "Data Path",
                     "type": "string"
                 },
-                "webhook_url": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Webhook Url"
+                "model_out": {
+                    "title": "Model Out",
+                    "type": "string"
+                },
+                "log_out": {
+                    "title": "Log Out",
+                    "type": "string"
                 }
             },
             "required": [
-                "metrics_path"
+                "data_path",
+                "model_out",
+                "log_out"
             ],
             "title": "InputModel",
             "type": "object"
@@ -226,99 +231,25 @@
                     "title": "Message",
                     "type": "string"
                 },
-                "notification_sent": {
-                    "title": "Notification Sent",
-                    "type": "boolean"
+                "model_file": {
+                    "title": "Model File",
+                    "type": "string"
                 },
-                "recipients": {
-                    "title": "Recipients",
+                "training_log": {
+                    "title": "Training Log",
                     "type": "string"
                 }
             },
             "required": [
                 "message",
-                "notification_sent",
-                "recipients"
+                "model_file",
+                "training_log"
             ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/scdi274/somes-pieces/tree/main/pieces/NotifyTeamPiece"
-    },
-    "PreprocessSolargisPiece": {
-        "name": "PreprocessSolargisPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": null
-        },
-        "tags": [],
-        "style": {
-            "node_label": "Piece",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "fa-solid fa-circle",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "outputs": {
-            "message": "str",
-            "output_file": "str",
-            "processed_rows": "int"
-        },
-        "dependencies_group": "0",
-        "description": "Preprocess Solargis data",
-        "inputs": {
-            "output_path": "str",
-            "input_path": "str"
-        },
-        "input_schema": {
-            "properties": {
-                "input_path": {
-                    "title": "Input Path",
-                    "type": "string"
-                },
-                "output_path": {
-                    "title": "Output Path",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "input_path",
-                "output_path"
-            ],
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "properties": {
-                "message": {
-                    "title": "Message",
-                    "type": "string"
-                },
-                "processed_rows": {
-                    "title": "Processed Rows",
-                    "type": "integer"
-                },
-                "output_file": {
-                    "title": "Output File",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "message",
-                "processed_rows",
-                "output_file"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/scdi274/somes-pieces/tree/main/pieces/PreprocessSolargisPiece"
+        "source_url": "https://github.com/StanoVo/somes-pieces-sv/tree/main/pieces/TrainXGBoostPiece"
     },
     "RegisterModelPiece": {
         "name": "RegisterModelPiece",
@@ -411,7 +342,77 @@
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/scdi274/somes-pieces/tree/main/pieces/RegisterModelPiece"
+        "source_url": "https://github.com/StanoVo/somes-pieces-sv/tree/main/pieces/RegisterModelPiece"
+    },
+    "FetchSolargisDataPiece": {
+        "name": "FetchSolargisDataPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": null
+        },
+        "tags": [
+            "FetchSolargisDataPiece"
+        ],
+        "style": {
+            "node_label": "Fetch Solargis Data Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-solid:database",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "outputs": {
+            "downloaded_file": "str",
+            "message": "str"
+        },
+        "dependencies_group": "0",
+        "description": "Downloads Solargis data",
+        "inputs": {
+            "s3_path": "str",
+            "output_path": "str"
+        },
+        "input_schema": {
+            "properties": {
+                "s3_path": {
+                    "title": "S3 Path",
+                    "type": "string"
+                },
+                "output_path": {
+                    "title": "Output Path",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "s3_path",
+                "output_path"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "type": "string"
+                },
+                "downloaded_file": {
+                    "title": "Downloaded File",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "message",
+                "downloaded_file"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/StanoVo/somes-pieces-sv/tree/main/pieces/FetchSolargisDataPiece"
     },
     "RunSolarForecastPiece": {
         "name": "RunSolarForecastPiece",
@@ -497,10 +498,10 @@
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/scdi274/somes-pieces/tree/main/pieces/RunSolarForecastPiece"
+        "source_url": "https://github.com/StanoVo/somes-pieces-sv/tree/main/pieces/RunSolarForecastPiece"
     },
-    "TrainXGBoostPiece": {
-        "name": "TrainXGBoostPiece",
+    "NotifyTeamPiece": {
+        "name": "NotifyTeamPiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": null
@@ -519,36 +520,37 @@
             }
         },
         "outputs": {
-            "model_file": "str",
+            "notification_sent": "bool",
             "message": "str",
-            "training_log": "str"
+            "recipients": "str"
         },
         "dependencies_group": "0",
-        "description": "Train XGBoost model",
+        "description": "Send notifications",
         "inputs": {
-            "data_path": "str",
-            "model_out": "str",
-            "log_out": "str"
+            "webhook_url": "str",
+            "metrics_path": "str"
         },
         "input_schema": {
             "properties": {
-                "data_path": {
-                    "title": "Data Path",
+                "metrics_path": {
+                    "title": "Metrics Path",
                     "type": "string"
                 },
-                "model_out": {
-                    "title": "Model Out",
-                    "type": "string"
-                },
-                "log_out": {
-                    "title": "Log Out",
-                    "type": "string"
+                "webhook_url": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Webhook Url"
                 }
             },
             "required": [
-                "data_path",
-                "model_out",
-                "log_out"
+                "metrics_path"
             ],
             "title": "InputModel",
             "type": "object"
@@ -559,24 +561,24 @@
                     "title": "Message",
                     "type": "string"
                 },
-                "model_file": {
-                    "title": "Model File",
-                    "type": "string"
+                "notification_sent": {
+                    "title": "Notification Sent",
+                    "type": "boolean"
                 },
-                "training_log": {
-                    "title": "Training Log",
+                "recipients": {
+                    "title": "Recipients",
                     "type": "string"
                 }
             },
             "required": [
                 "message",
-                "model_file",
-                "training_log"
+                "notification_sent",
+                "recipients"
             ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/scdi274/somes-pieces/tree/main/pieces/TrainXGBoostPiece"
+        "source_url": "https://github.com/StanoVo/somes-pieces-sv/tree/main/pieces/NotifyTeamPiece"
     }
 }
