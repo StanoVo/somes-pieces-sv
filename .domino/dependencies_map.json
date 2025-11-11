@@ -5,15 +5,15 @@
             "requirements_file": null
         },
         "pieces": [
-            "EvaluateAndPlotPiece",
-            "FetchSolargisDataPiece",
-            "NotifyTeamPiece",
             "PreprocessSolargisPiece",
+            "EvaluateAndPlotPiece",
+            "TrainXGBoostPiece",
             "RegisterModelPiece",
+            "FetchSolargisDataPiece",
             "RunSolarForecastPiece",
-            "TrainXGBoostPiece"
+            "NotifyTeamPiece"
         ],
         "secrets": [],
-        "source_image": "ghcr.io/scdi274/somes-pieces:0.1.0-group0"
+        "source_image": "ghcr.io/stanovo/somes-pieces-sv:0.1.2-group0"
     }
 }
